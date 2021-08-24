@@ -1,0 +1,16 @@
+{
+  "name": "onlinepajak-coding-challange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js",
+    "test": "jest --verbose"
+  },
+  "author": "stevra-silvanus",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.2",
+    "jest": "^27.0.6"
+  }
+}
