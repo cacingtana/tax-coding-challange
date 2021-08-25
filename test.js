@@ -14,21 +14,43 @@ afterAll((done) => {
 });
 
 
-//without relief test
-// test('should calculate tax rate successfully', async function(){
-//     const option = {
-//         method: 'POST',
-//         url: '/withoutreliefs',
-//         payload: JSON.stringify({salary: 25000000}),
-//     };
+//without payload /withoutreliefs
+test('should fail in post /withoutreliefs with no payload', async function () {
+    const options = {
+        method: 'POST',
+        url: '/withoutreliefs',
+    };
+    const data = await server.inject(options);
+    expect(data.statusCode).toBe(422);
+    expect(data.result).toBe('Invalid or no payload');
+});
 
-//     const data = await server.inject(option);
-//     expect(data.statusCode).toBe(200);
-//     expect(data.result).toBe('Tax rate 5%');
-// });
+//without payload /withoutreliefs
+test('should fail in post /withreliefs with no payload', async function () {
+    const options = {
+        method: 'POST',
+        url: '/withreliefs',
+    };
+    const data = await server.inject(options);
+    expect(data.statusCode).toBe(422);
+    expect(data.result).toBe('Invalid or no payload');
+});
 
-//with relief type test
-test('should calculate tax rate successfully', async function(){
+//without tax relief test
+test('should calculate pph21 without tax reliefs successfully', async function(){
+    const option = {
+        method: 'POST',
+        url: '/withoutreliefs',
+        payload: JSON.stringify({salary: 25000000}),
+    };
+
+    const data = await server.inject(option);
+    expect(data.statusCode).toBe(200);
+    expect(data.result).toBe(data.result);
+});
+
+//with tax relief type test
+test('should calculate pph21 with tax reliefs successfully', async function(){
     const option = {
         method: 'POST',
         url: '/withreliefs',
@@ -37,5 +59,5 @@ test('should calculate tax rate successfully', async function(){
 
     const data = await server.inject(option);
     expect(data.statusCode).toBe(200);
-    expect(data.result).toBe('Tax relief');
+    expect(data.result).toBe(data.result);
 });

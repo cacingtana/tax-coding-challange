@@ -8,16 +8,13 @@ class TaxWithoutReliefs {
     }
 
     async count(){
-        const year = 12;
-        let taxableIncome = await this._salary * year;
-        let taxOnThisIncome = taxService.taxWithoutTaxRelief(patern, taxableIncome);
-
-        console.log(taxOnThisIncome);
-        const annual = {
-            'taxableIncome': taxableIncome,
-            'taxOnThisIncome': taxOnThisIncome.reduce((v, e)=>{ return v + e },
-        }
-        return annual; 
+        let taxableIncome = await this._salary * 12;
+        let result = taxService.taxWithoutTaxRelief(patern, taxableIncome);
+        let taxOnThisIncome = result.reduce((v, e)=>{ return v + e });
+        return {
+            'Annual taxable income' : taxableIncome,
+            'Annual Tax on this Income' : taxOnThisIncome,
+        };
     }
 }
 
