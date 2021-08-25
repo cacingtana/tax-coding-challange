@@ -26,7 +26,7 @@ class TaxHandler {
             }
         } 
         else{
-            return h.response('Invalid salary ammount').code(422);
+            return h.response('Invalid or no payload').code(422);
         }
     }
 }
